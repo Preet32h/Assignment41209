@@ -1,7 +1,7 @@
-FROM python:3.9-slim
+FROM node:18-alpine
 WORKDIR /app
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
+COPY package*.json ./
+RUN npm install --production
 COPY . .
-EXPOSE 80
-CMD ["python", "app.py"]
+EXPOSE 3000
+CMD ["node", "src/index.js"]
